@@ -28,15 +28,26 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  any_link_preview: ^3.0.3
   appwrite: ^15.0.0
+  cached_network_image: ^3.4.1
+  carousel_slider: ^5.0.0
   cupertino_icons: ^1.0.8
+  dotted_border: ^2.1.0
+  dropdownfield2: ^1.0.7
   file_picker: ^9.2.3
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.6.1
   flutter_simple_typewriter: ^1.0.2
+  flutter_svg: ^2.0.17
   fpdart: ^1.1.1
+  geocoding: ^3.0.0
+  geolocator: ^13.0.3
+  image_picker: ^1.1.2
   intl: ^0.19.0
+  like_button: ^2.0.5
+  timeago: ^3.7.0
 
 dev_dependencies:
   flutter_lints: ^5.0.0

@@ -5,9 +5,9 @@ class AppwriteConstants {
   static const String usersCollectionId = '67e7c8480027d7754d36';
   static const String postCollectionId = '67e7dfe8000f08b61331';
   static const String lawyersCollectionId = '67e7e0070038aa757c4b';
-  static const String meetingsCollectionId = '';
+  static const String meetingsCollectionId = '67e7e01f002ae8ba7187';
 
-  static const String postStorageBucketID = '';
+  static const String postStorageBucketID = '67e80142003e4ed7e5ce';
 
   static String imageUrl(String imageId) =>
       '$endpoint/storage/buckets/$postStorageBucketID/files/$imageId/view?project=$projectID&mode=admin';

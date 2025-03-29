@@ -1,5 +1,5 @@
 
-import 'package:adhikar_acehack4_o/features/home/views/home.dart';
+import 'package:adhikar_acehack4_o/features/home/views/home_view.dart';
 import 'package:adhikar_acehack4_o/theme/pallete_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
