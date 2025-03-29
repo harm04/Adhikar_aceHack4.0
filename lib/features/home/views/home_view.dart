@@ -7,6 +7,7 @@ import 'package:adhikar_acehack4_o/features/home/views/my_meetings.dart';
 import 'package:adhikar_acehack4_o/features/home/views/pods_list_view.dart';
 import 'package:adhikar_acehack4_o/features/home/views/post_list.dart';
 import 'package:adhikar_acehack4_o/features/home/views/search_view.dart';
+import 'package:adhikar_acehack4_o/features/profile/views/profile_view.dart';
 import 'package:adhikar_acehack4_o/theme/pallete_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,12 +48,12 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         Column(
                           children: [
                             GestureDetector(
-                              // onTap: () => Navigator.push(context,
-                              //     MaterialPageRoute(builder: (context) {
-                              //   return ProfileView(
-                              //     userModel: currentuser,
-                              //   );
-                              // })),
+                              onTap: () => Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return ProfileView(
+                                  userModel: currentuser,
+                                );
+                              })),
                               child: Row(
                                 children: [
                                   CircleAvatar(
