@@ -1,5 +1,6 @@
 
 import 'package:adhikar_acehack4_o/features/home/views/home_view.dart';
+import 'package:adhikar_acehack4_o/marketplace/views/marketplace_view.dart';
 import 'package:adhikar_acehack4_o/theme/pallete_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   List<Widget> pageList = [
     const HomeView(),
-    const Center(child: Text("Home")),
+    const MarketPlaceScreen(),
     const Center(child: Text(" jobs")),
     const Center(child: Text("Notifications")),
     const Center(child: Text("news")),

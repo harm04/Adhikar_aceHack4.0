@@ -4,7 +4,7 @@ import 'package:adhikar_acehack4_o/common/widgets/error.dart';
 import 'package:adhikar_acehack4_o/common/widgets/loader.dart';
 import 'package:adhikar_acehack4_o/features/auth/controller/auth_controller.dart';
 import 'package:adhikar_acehack4_o/features/auth/views/login.dart';
-import 'package:adhikar_acehack4_o/features/lawyers/lawyer_verification.dart';
+import 'package:adhikar_acehack4_o/features/home/views/lawyer_verification_screen.dart';
 import 'package:adhikar_acehack4_o/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
