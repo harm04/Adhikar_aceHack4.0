@@ -7,6 +7,7 @@ import 'package:adhikar_acehack4_o/features/home/views/my_meetings.dart';
 import 'package:adhikar_acehack4_o/features/home/views/pods_list_view.dart';
 import 'package:adhikar_acehack4_o/features/home/views/post_list.dart';
 import 'package:adhikar_acehack4_o/features/home/views/search_view.dart';
+import 'package:adhikar_acehack4_o/features/nyaysahayak/chat_screen.dart';
 import 'package:adhikar_acehack4_o/features/profile/views/profile_view.dart';
 import 'package:adhikar_acehack4_o/theme/pallete_theme.dart';
 import 'package:flutter/material.dart';
@@ -234,11 +235,11 @@ class _HomeViewState extends ConsumerState<HomeView> {
                 actions: [
                   GestureDetector(
                     onTap: () {
-                      //navigate to ai screen
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (context) {
-                      //   return NyaysahayakHomePage();
-                      // }));
+                     // navigate to ai screen
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ChatPage();
+                      }));
                     },
                     child: Image.asset(
                       'assets/icons/ic_ai.png',
