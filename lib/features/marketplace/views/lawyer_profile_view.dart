@@ -1,5 +1,5 @@
 
-import 'package:adhikar_acehack4_o/marketplace/views/confirm_consultation.dart';
+import 'package:adhikar_acehack4_o/features/marketplace/views/confirm_consultation.dart';
 import 'package:adhikar_acehack4_o/theme/pallete_theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

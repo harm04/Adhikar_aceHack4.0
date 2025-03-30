@@ -2,9 +2,9 @@
 import 'package:adhikar_acehack4_o/common/widgets/error.dart';
 import 'package:adhikar_acehack4_o/common/widgets/loader.dart';
 import 'package:adhikar_acehack4_o/features/auth/controller/auth_controller.dart';
-import 'package:adhikar_acehack4_o/marketplace/views/lawyer_profile_view.dart';
-import 'package:adhikar_acehack4_o/marketplace/views/pending_meetings.dart';
-import 'package:adhikar_acehack4_o/marketplace/widgets/lawyer_card.dart';
+import 'package:adhikar_acehack4_o/features/marketplace/views/lawyer_profile_view.dart';
+import 'package:adhikar_acehack4_o/features/marketplace/views/pending_meetings.dart';
+import 'package:adhikar_acehack4_o/features/marketplace/widgets/lawyer_card.dart';
 import 'package:adhikar_acehack4_o/theme/pallete_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
