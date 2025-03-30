@@ -1,4 +1,3 @@
-
 import 'package:adhikar_acehack4_o/apis/auth_api.dart';
 import 'package:adhikar_acehack4_o/apis/storage_api.dart';
 import 'package:adhikar_acehack4_o/apis/user_api.dart';
@@ -80,6 +79,19 @@ final getPendingMeetingsListForLawyersProvider =
 final getLatestMeetingsForLawyersProvider = StreamProvider((ref) {
   final postAPI = ref.watch(userAPIProvider);
   return postAPI.getLatestMeetingsForLawyers();
+});
+
+final userCreditsProvider = StreamProvider<double>((ref) {
+  final userApi = ref.watch(userAPIProvider);
+  final currentUserId = ref.watch(currentUserAccountProvider.future).then((user) => user?.$id);
+
+  return currentUserId.asStream().asyncExpand((uid) {
+    if (uid != null) {
+      return userApi.getUserCreditsStream(uid); // Stream of user credits
+    } else {
+      return Stream.value(0.0); // Default to 0.0 if no user is logged in
+    }
+  });
 });
 
 class AuthController extends StateNotifier<bool> {
@@ -380,5 +392,17 @@ class AuthController extends StateNotifier<bool> {
     return meetingList
         .map((meetings) => MeetingsModel.fromMap(meetings.data))
         .toList();
+  }
+
+  Future<void> deductCredits({
+    required String uid,
+    required double amount,
+    required BuildContext context,
+  }) async {
+    final res = await _userAPI.deductCredits(uid, amount);
+    res.fold(
+      (l) => ShowSnackbar(context, l.message),
+      (r) => ShowSnackbar(context, '2 credits deducted for using AI services'),
+    );
   }
 }

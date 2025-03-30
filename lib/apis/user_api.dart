@@ -1,4 +1,3 @@
-
 import 'package:adhikar_acehack4_o/common/failure.dart';
 import 'package:adhikar_acehack4_o/common/provider/provider.dart';
 import 'package:adhikar_acehack4_o/common/type_def.dart';
@@ -19,15 +18,15 @@ final userAPIProvider = Provider((ref) {
 });
 
 abstract class IUserAPI {
-  //
+  
   FutureEitherVoid saveUserData(UserModel userModel);
-  //
+  
   Future<Document> getUserData(String uid);
-//
+
   Future<List<Document>> searchUser(String name);
 
   FutureEitherVoid updateUser(UserModel userModel);
-  //
+  
   Stream<RealtimeMessage> getLatestUserProfileData();
 
   Future<List<Document>> getLawyers();
@@ -46,6 +45,10 @@ abstract class IUserAPI {
   // Future<List<Document>> getMeetingsForLawyers(String lawyerUid);
 
   Stream<RealtimeMessage> getLatestMeetingsForLawyers();
+  
+    FutureEitherVoid deductCredits(String uid, double amount);
+
+  Stream<double> getUserCreditsStream(String uid);
 }
 
 class UserAPI implements IUserAPI {
@@ -92,7 +95,7 @@ class UserAPI implements IUserAPI {
     return documents.documents;
   }
 
-  @override
+   @override
   FutureEitherVoid updateUser(UserModel userModel) async {
     try {
       await _db.updateDocument(
@@ -105,6 +108,37 @@ class UserAPI implements IUserAPI {
       return left(Failure(err.toString(), stackTrace));
     }
   }
+
+  // @override
+  // FutureEitherVoid updateUserCredits(UserModel userModel) async {
+  //   try {
+  //     await _db.updateDocument(
+  //         databaseId: AppwriteConstants.databaseId,
+  //         collectionId: AppwriteConstants.usersCollectionId,
+  //         documentId: userModel.uid,
+  //         data: {
+  //           'credits':userModel.credits,
+  //         });
+  //     return right(null);
+  //   } catch (err, stackTrace) {
+  //     return left(Failure(err.toString(), stackTrace));
+  //   }
+  // }
+  //  @override
+  // FutureEitherVoid updateLawyerCredits(LawyerModel lawyerModel) async {
+  //   try {
+  //     await _db.updateDocument(
+  //         databaseId: AppwriteConstants.databaseId,
+  //         collectionId: AppwriteConstants.lawyersCollectionId,
+  //         documentId: lawyerModel.uid,
+  //         data: {
+  //           'credits':lawyerModel.credits,
+  //         });
+  //     return right(null);
+  //   } catch (err, stackTrace) {
+  //     return left(Failure(err.toString(), stackTrace));
+  //   }
+  // }
 
   @override
   Stream<RealtimeMessage> getLatestUserProfileData() {
@@ -261,5 +295,44 @@ class UserAPI implements IUserAPI {
     return _realtime.subscribe([
       'databases.${AppwriteConstants.databaseId}.collections.${AppwriteConstants.postCollectionId}.documents'
     ]).stream;
+  }
+
+  @override
+  FutureEitherVoid deductCredits(String uid, double amount) async {
+    try {
+      final userDoc = await _db.getDocument(
+        databaseId: AppwriteConstants.databaseId,
+        collectionId: AppwriteConstants.usersCollectionId,
+        documentId: uid,
+      );
+
+      // Safely cast the credits to double
+      final currentCredits = (userDoc.data['credits'] as num).toDouble();
+      final updatedCredits = currentCredits - amount;
+
+      await _db.updateDocument(
+        databaseId: AppwriteConstants.databaseId,
+        collectionId: AppwriteConstants.usersCollectionId,
+        documentId: uid,
+        data: {'credits': updatedCredits},
+      );
+
+      return right(null);
+    } catch (err, stackTrace) {
+      return left(Failure(err.toString(), stackTrace));
+    }
+  }
+
+  @override
+  Stream<double> getUserCreditsStream(String uid) {
+    return _realtime
+        .subscribe([
+          'databases.${AppwriteConstants.databaseId}.collections.${AppwriteConstants.usersCollectionId}.documents.$uid'
+        ])
+        .stream
+        .map((event) {
+          final data = event.payload;
+          return (data['credits'] as num).toDouble(); // Safely cast to double
+        });
   }
 }
